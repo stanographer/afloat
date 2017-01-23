@@ -36,6 +36,9 @@ function openMe(data) {
 	ipcRenderer.send('start-event', data);
 }
 
-function sendData (data) {
-	ipcRenderer.send('info', data);
+function endSession(data) {
+	ipcRenderer.send('end-session');
+}
+function settings() {
+	ipcRenderer.send('settings');
 }

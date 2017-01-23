@@ -1,16 +1,7 @@
 var myApp = angular.module('Float',[])
 
 myApp.controller('FloatController', function ($scope, $http) {
-
-	$http.get('./resources/config.json')
-		.then(function (res) {
-			
-			$scope.data = res.data;
-
-	  		$scope.fontSize = $scope.data.fontSize;
-	  		$scope.fontColor = $scope.data.fontColor;
-	  		$scope.fontStyle = $scope.data.fontStyle;
-	  		$scope.url = '';
+	$scope.url = '';
 	  		$scope.isValidURL = false;
 	  		$scope.URLStatusMessage = '';
 	  		$scope.formCss = {
@@ -18,7 +9,13 @@ myApp.controller('FloatController', function ($scope, $http) {
 	  			'color': ''
 	  		}
 
-	  
+	$http.get('./resources/config.json')
+		.then(function (res) {
+			
+			$scope.data = res.data;
+	  		$scope.fontSize = $scope.data.fontSize;
+	  		$scope.fontColor = $scope.data.fontColor;
+	  		$scope.fontStyle = $scope.data.fontStyle;	  
 	  });
 
 	$scope.switchFormColor = function (check) {
@@ -84,13 +81,13 @@ myApp.controller('FloatController', function ($scope, $http) {
 					if (author.match(regexp) && event.match(regexp)) {
 						$scope.isValidURL = true;
 						$scope.switchFormColor($scope.isValidURL);
-						$scope.URLStatusMessage = 'Success!';
+						$scope.URLStatusMessage = 'Session active.';
 						openMe([author, event]);
 					} else {
 						// URL must consist of only alphanumeric characters, hyphens, or underscores.
 						$scope.isValidURL = false;
 						$scope.switchFormColor($scope.isValidURL);
-						$scope.URLStatusMessage = 'Sorry. The URL must consist of only alphanumeric characters, hyphens, slashes, or underscores. It must not contain any spaces.';
+						$scope.URLStatusMessage = 'Sorry. The URL must consist of only alphanumeric characters, hyphens, slashes, or underscores.';
 					}
 				} else {
 					$scope.isValidURL = false;

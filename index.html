@@ -26,30 +26,39 @@
   <body ng-app="Float" ng-controller="FloatController">
     <div class="container centered">
       <h1 class="title">afloat</h1>
-      <div class="control-buttons">
-            <button type="button" class="btn btn-lg btn-info" onclick="saveFirst();"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Settings</button> 
-            <button type="button" class="btn btn-lg btn-primary" onclick="saveFirst();"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Help</button>
-          </div>
       <div class="row">
             <form name="urlForm">
               <div id="contact-form" class="form-container" ng-style="formCss" data-form-container>
                 <div class="input-container">
                  <div class="row">
-                   <p>Type in your Aloft event URL here:</p>
+                   <p ng-hide="isValidURL">Enter your Aloft event URL here:</p>
                  </div>
                   <div class="row">
                     <span class="req-input" id="validateForm">
                       <span class="input-status" data-toggle="tooltip" data-placement="top" title="Type in a valid Aloft event address."> </span>
-                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-blur="resetForm()" required>
+                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-blur="resetForm()" ng-disabled="isValidURL" required>
                     </span>
+                                      <br ng-show="isValidURL">
+                  <p class="status-message">{{ URLStatusMessage }}</p>
                   </div>
                   <div class="row submit-row">
-                    <button type="submit" ng-click="checkURL(url);" id="submit" class="btn btn-block btn-lg submit-form">Start</button>
+                    <button type="submit" ng-click="checkURL(url);" ng-hide="isValidURL" id="submit" class="btn btn-block btn-lg submit-form">Start</button>
+                    <button type="submit" onclick="endSession();" ng-show="isValidURL" class="btn btn-block btn-lg submit-form invalid" ng-cloak><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;End Session</button>
+                    <div class="form-check" ng-hide="isValidURL" ng-cloak>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-flash"></i></span>Remember Next Time
+                        </label>
+                    </div>
                   </div>
-                  <p class="status-message">{{ URLStatusMessage }}</p>
                 </div>
               </div>
             </form>
+          </div>
+          <div class="control-buttons">
+            <button type="button" class="btn btn-lg btn-info" onclick="settings();" ng-hide="isValidURL"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Settings</button> 
+            <button type="button" class="btn btn-lg btn-primary" onclick="saveFirst();" ng-hide="isValidURL"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Help</button>
           </div>
            <p class="footer">
               <a href="about.html">About Afloat</a>
