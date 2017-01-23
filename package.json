@@ -1,0 +1,32 @@
+{
+  "name": "Afloat",
+  "productName": "Afloat",
+  "version": "1.0.0",
+  "description": "A small utility that floats cloud captions from Aloft on a device.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-packager": "^8.5.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "electron-window": "^0.8.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.1.1",
+    "nconf": "^0.8.4"
+  }
+}

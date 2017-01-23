@@ -1,0 +1,66 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  padding: 0px;
+  max-width: inherit;
+  height: 100%;
+  position: fixed;
+  overflow: visible;
+  width: 100%;
+  background-color: transparent;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+}
+
+#pad {
+  resize: none;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left: 0px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  width: 97%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: -webkit-canvas(cursors);
+  background-repeat: no-repeat;
+  font-size: 30px;
+  line-height: 140%;
+  font-family: Open Sans;
+  background-color: transparent;
+  color: #000;
+}
+
+/* background and positioning */
+.hwt-container {
+  background-color: transparent !important;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+
+/* size and formatting */
+.hwt-content {
+  width: 100%;
+  height: 97%;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left: 0px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  color: #555;
+  font: 30px/140% 'Open Sans';
+}
+
+/* highlights */
+.hwt-content mark {
+  border-radius: 3px;
+}
+.hwt-content mark:nth-of-type(2n) {
+  background-color: #cfdeab;
+}
+.hwt-content mark:nth-of-type(2n+1) {
+  background-color: #b1d5e5;
+}
+

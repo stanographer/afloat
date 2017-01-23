@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Float</title>
+
+    <!-- jQuery -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <!-- Bootstrap -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <link href="./resources/css/index.css" rel="stylesheet">
+
+  </head>
+  <body ng-app="Float" ng-controller="FloatController">
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Welcome to Float!</h1>
+        <p>
+          If this is the first time using this, click here to create a config file:
+        </p>
+          <button type="button" class="btn btn-success" onclick="saveFirst();">Create config file!</button>
+      </div>
+      <form name="urlForm">
+     <!--  <div class="form-group row">
+        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font size</label>
+        <div class="input-group col-sm-4">
+          <input type="text" class="form-control" id="fontSize" name="fontSize" ng-model="fontSize" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font color</label>
+        <div class="input-group col-sm-4">
+          <input type="text" class="form-control" id="fontColor" name="fontColor" ng-model="fontColor" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font style</label>
+        <div class="input-group col-sm-4">
+          <input type="text" class="form-control" id="fontStyle" name="fontStyle" ng-model="fontStyle" required>
+        </div>
+      </div> -->
+        
+        <div class="row">
+          <div class="col-lg-6">
+            <h3>Type in your Aloft event URL here:</h3>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="url" name="url" placeholder="Example: http://aloft.nu/stanley/wordpress" ng-model="url" required>
+              <span class="input-group-btn">
+                <button type="submit" ng-click="checkURL(url);" ng-disabled="urlForm.$invalid" class="btn btn-success">Start!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        
+      </form>
+      <br>
+      <div class="alert alert-danger" role="alert" ng-show="URLStatusMessage" ng-cloak>
+       <h4 class="alert-heading">Uh-oh!</h4>
+        <p>{{ URLStatusMessage }}</p>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('angular');
+    require('./renderer.js');
+  </script>
+  <script type="text/javascript" src="FloatController.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</html>
