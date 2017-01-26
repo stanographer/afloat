@@ -20,6 +20,7 @@
     <!-- Custom -->
     <link href="./resources/css/index.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round|Raleway|Sanchez|Source+Sans+Pro" rel="stylesheet">
+    <script src="./resources/js/bootstrap-select.min.js"></script>
     
 
   </head>
@@ -36,9 +37,9 @@
                   <div class="row">
                     <span class="req-input" id="validateForm">
                       <span class="input-status" data-toggle="tooltip" data-placement="top" title="Type in a valid Aloft event address."> </span>
-                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-blur="resetForm()" ng-disabled="isValidURL" required>
+                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-value="lastURL" ng-blur="resetForm()" ng-disabled="isValidURL" required>
                     </span>
-                                      <br ng-show="isValidURL">
+                    <br ng-show="isValidURL">
                   <p class="status-message">{{ URLStatusMessage }}</p>
                   </div>
                   <div class="row submit-row">
@@ -47,7 +48,7 @@
                     <div class="form-check" ng-hide="isValidURL" ng-cloak>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" value="">
+                          <input type="checkbox" value="" ng-model="checked">
                             <span class="cr"><i class="cr-icon glyphicon glyphicon-flash"></i></span>Remember Next Time
                         </label>
                     </div>

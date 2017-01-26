@@ -8,6 +8,7 @@ const url = require('url');
 let mainWindow;
 let eventData;
 let win;
+let settingsPane;
 
 function createWindow () {
   // Create the browser window.
@@ -25,15 +26,28 @@ function createWindow () {
   }));
   mainWindow.setMaximizable(false);
   mainWindow.setFullScreenable(false);
-  mainWindow.setResizable(false);
+  // mainWindow.setResizable(false);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     mainWindow = null
   });
+}
+
+var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+});
+
+if (shouldQuit) {
+  app.quit();
+  return;
 }
 
 app.on('ready', createWindow);
@@ -52,11 +66,12 @@ app.on('activate', function () {
 });
 
 ipcMain.on('start-event', (event, args) => {
+  console.log('hit main: ' + JSON.stringify(args, null, 2) + ' ' + JSON.stringify(args[2], null, 2));
   win = new BrowserWindow({
     width: 1000,
     height: 200,
-    // titleBarStyle: 'hidden',
-    transparent: true,
+    titleBarStyle: 'hidden',
+    transparent: false,
     frame: false
   });
   win.setAlwaysOnTop(true, 'status');
@@ -72,15 +87,22 @@ ipcMain.on('did-finish-loading', function () {
 });
 
 ipcMain.on('end-session', (event, args) => {
-  win.close();
-  mainWindow.close();
   app.quit();
 });
 
 ipcMain.on('settings', () => {
-  let settingsPane = new BrowserWindow({
+  settingsPane = new BrowserWindow({
     width: 350,
-    height: 500
+    height: 700,
+    titleBarStyle: 'hidden'
   });
   settingsPane.loadURL(`file://${__dirname}/settings.html`);
+  settingsPane.focus();
+  settingsPane.setFullScreenable(false);
+  settingsPane.setMaximizable(false);
+  // settingsPane.setResizable(false);
+  settingsPane.webContents.openDevTools();
+});
+ipcMain.on('close-settings', () => {
+  settingsPane.close();
 });

@@ -7,7 +7,6 @@ body {
   position: fixed;
   overflow: visible;
   width: 100%;
-  background-color: transparent;
   -webkit-app-region: drag;
   -webkit-user-select: none;
 }
@@ -25,11 +24,8 @@ body {
   border: none;
   background: -webkit-canvas(cursors);
   background-repeat: no-repeat;
-  font-size: 30px;
-  line-height: 140%;
   font-family: Open Sans;
-  background-color: transparent;
-  color: #000;
+  /*background-color: transparent;*/
 }
 
 /* background and positioning */

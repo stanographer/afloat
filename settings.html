@@ -12,45 +12,95 @@
     <!-- Bootstrap -->
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <link href="./resources/css/custom-forms.css" rel="stylesheet"> -->
+
+    <!-- bootstrap-select -->
+    <link rel="stylesheet" href="./resources/css/bootstrap-select.min.css">
+    <script src="./resources/js/bootstrap-select.min.js"></script>
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="./resources/font-awesome/css/font-awesome.min.css">
 
     <!-- Custom -->
-    <link href="./resources/css/settings.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round|Raleway|Sanchez|Source+Sans+Pro" rel="stylesheet">
-    
+    <link href="./resources/css/settings.css" rel="stylesheet">
+    <script src="settings.js"></script>
 
   </head>
   <body ng-app="Float" ng-controller="FloatController">
     <div class="container">
-      <h2>settings</h2>
-
-
+      <h2 class="panel-title">settings</h2>
        <form class="form-inline">
-
-  <div class="form-group">
-    <label for="inputPassword4">Font size</label>
-    <input type="text" id="fontSize" name="fontSize" ng-model="fontSize" required class="form-control mx-sm-3">
-    </input>
-    <label for="inputPassword4">Font color</label>
-    <input type="text" id="fontColor" name="fontColor" ng-model="fontColor" required class="form-control mx-sm-3">
-    <small id="passwordHelpInline" class="text-muted">
-      Must be 8-20 characters long.
-    </small>
-  </div>
-</form>
-     
-          <div class="control-buttons">
-            <button type="button" class="btn btn-lg btn-info" onclick="saveFirst();" ng-hide="isValidURL"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Settings</button> 
-            <button type="button" class="btn btn-lg btn-primary" onclick="saveFirst();" ng-hide="isValidURL"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Help</button>
+        <div class="form-group">
+          <div class="row smallfield">
+            <label for="inputPassword4">Font size {{fontSize}}</label>
+            <input type="text" id="fontSize" name="fontSize" ng-model="fontSize" required class="form-control">
+            </input>
           </div>
-           <p class="footer">
-              <a href="about.html">About Afloat</a>
-          </p>
+          <ul>
+            <li ng-repeat="(key, value) in fonts">{{key}}, {{value.name}}</li> {{selectedFont.name}}
+          </ul>
+          <div class="row smallfield">
+            <label for="inputPassword4">Font color</label>
+            <input type="text" id="fontColor" name="fontColor" ng-model="fontColor" required class="form-control"></input>
+          </div>
+          {{fonts}}
+          <div class="row smallfield">
+            <label for="fontStyle">Font style</label>
+            <select id="basic" class="selectpicker show-tick form-control" ng-options="f.name as f.name group by f.type for f in fonts" ng-model="selectedFont.name">
+              <optgroup label="default fonts">
+                <!-- <option style="display:none" value="">{{f.name}}</option> -->
+              </optgroup>
+            </select>
+          </div>
+          <div class="row smallfield">
+            <label for="inputPassword4">Background color</label>
+            <input type="text" id="bgColor" name="bgColor" ng-model="bgColor" required class="form-control">
+            </input>
+          </div>
+          <div class="row">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" ng-model="checked">
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Transparent caption window
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" ng-model="checked">
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Menu &amp; titlebar invisible
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <label for="lastURL">Remembered URL</label>
+            <div class="input-group">
+              <input type="text" class="form-control" onClick="this.setSelectionRange(0, this.value.length)" name="lastURL" id="lastURL" ng-model="lastURL"></input>
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button" onclick="clearTextInput('lastURL');">Clear</button>
+              </span>
+            </div>
+        </div>
+        <div class="row">
+            <label for="lastURL">Add fonts</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="userFonts" id="userFonts" ng-model="userFonts"></input>
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button" onclick="clearTextInput('lastURL');">Clear</button>
+              </span>
+            </div>
+            {{userFonts}}
+        </div>
+    <p class="centered padded"><a href="#" onclick="setDefaults();">Revert to Default Values</a></p>
+  </div>   
+  <div class="control-buttons">
+    <button type="submit" class="btn btn-lg btn-info" ng-click="batchSetConfig(batchConfig);" ng-hide="isValidURL"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Settings</button>
+    <button type="button" class="btn btn-lg btn-danger" onclick="closeSettings();" ng-hide="isValidURL"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
+  </div>
+  </form>    
   </div><!-- container -->
-  </body> 
+</body> 
   <script>
     // You can also require other files to run in this process
     require('angular');
@@ -58,4 +108,13 @@
   </script>
   <script type="text/javascript" src="FloatController.js"></script>
   <script type="text/javascript" src="index.js"></script>
+  <script>
+    $('.selectpicker').selectpicker({
+      size: 10,
+      liveSearch: false
+  });
+    $(document).ready(function () {
+      $('.selectpicker').selectpicker('refresh');
+    });
+  </script>
 </html>

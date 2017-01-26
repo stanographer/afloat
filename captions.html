@@ -40,7 +40,7 @@
 		ipcRenderer.send('did-finish-loading');
 
 		ipcRenderer.on('event-data', function (event, data) {
-			console.log(data);
+			console.log('BITCHHHHH! ' + data[0] + ' ' + JSON.stringify(data[1], null, 2) + ' ' + JSON.stringify(data[2]));
 			var options = {
 	        origin: 'http://aloft.nu/channel',
 	        reconnect: true,
@@ -58,7 +58,10 @@
 	        if (doc.type && doc.type.name === 'text')
 	          doc.attachTextarea(elem);
 	        });
+	      stylePad(data[2].fontColor, data[2].bgColor);
+
 		});
 	</script>
 </body>
+    <script src="captions.js"></script>
 </html>

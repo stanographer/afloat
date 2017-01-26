@@ -1,6 +1,4 @@
 body {
-	/*background-color: #333333;*/
-	/*color: #fff;*/
 	color: #2c363f;
 	background-image: url('../img/bg.png');
     background-repeat: no-repeat;
@@ -19,6 +17,9 @@ form input[type=text] {
 }
 p {
 	font-size: 15px !important;
+}
+.btn {
+	border-radius: 0px;
 }
 .status-message {
 	padding-top: 0px;
