@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Float Captions</title>
+	<title>Afloat Captions</title>
 
 	<!-- ShareJS -->
     <script src="./resources/js/bcsocket.js"></script>   <!-- add transport -->
@@ -15,27 +15,14 @@
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script>if (window.module) module = window.module;</script>
-
-    <!-- Highlight text plugin -->
-    <link href="./resources/css/jquery.highlight-within-textarea.css" rel="stylesheet">
-	<script src="./resources/js/jquery.highlight-within-textarea.js"></script>
 </head>
 
 <body ng-app="Float" ng-controller="FloatController">
 	<script type="text/javascript" src="index.js"></script>
 	<textarea class="caption-text" id="pad"></textarea>
-	<script>
-		function onInput(input) {
-			var length = input.length;
-			if (length >= 1) {
-				return [0, length];
-			} else {
-				return [];
-			}
-		}
-		
-		$('textarea.caption-text').highlightWithinTextarea(onInput);
-	</script>
+	<div class="col-md-6 full-height" id="captionArea">
+		<span class="captionText"></span>
+	</div>
 	<script>
 		ipcRenderer.send('did-finish-loading');
 
@@ -48,7 +35,7 @@
 	      };
 	      var documentName = document.location.pathname.substring(1);
 	      var elem = document.getElementById('pad');
-	      var s = new BCSocket('http://aloft.nu/channel', options);
+	      var s = new BCSocket('https://aloft.nu/channel', options);
 	      var sjs = new window.sharejs.Connection(s);
 	      var doc = sjs.get(data[0], data[1]);
 	        console.log(doc);
@@ -58,8 +45,7 @@
 	        if (doc.type && doc.type.name === 'text')
 	          doc.attachTextarea(elem);
 	        });
-	      stylePad(data[2].fontColor, data[2].bgColor);
-
+	      stylePad(data[2]);
 		});
 	</script>
 </body>

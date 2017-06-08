@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Float</title>
+    <title>Afloat</title>
 
     <!-- jQuery -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -21,8 +21,6 @@
     <link href="./resources/css/index.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round|Raleway|Sanchez|Source+Sans+Pro" rel="stylesheet">
     <script src="./resources/js/bootstrap-select.min.js"></script>
-    
-
   </head>
   <body ng-app="Float" ng-controller="FloatController">
     <div class="container centered">
@@ -37,14 +35,14 @@
                   <div class="row">
                     <span class="req-input" id="validateForm">
                       <span class="input-status" data-toggle="tooltip" data-placement="top" title="Type in a valid Aloft event address."> </span>
-                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-value="lastURL" ng-blur="resetForm()" ng-disabled="isValidURL" required>
+                      <input type="text" id="url" name="url" placeholder="http://aloft.nu/stanley/wordpress" ng-model="url" ng-change="resetForm()" ng-value="configData.lastURL" ng-init="configData.lastURL" ng-blur="resetForm()" ng-disabled="isValidURL" required>
+                      <!-- {{ url }} -->
                     </span>
                     <br ng-show="isValidURL">
-                  <p class="status-message">{{ URLStatusMessage }}</p>
+                  <p class="status-message" ng-hide="!URLStatusMessage">{{ URLStatusMessage }}</p>
                   </div>
                   <div class="row submit-row">
                     <button type="submit" ng-click="checkURL(url);" ng-hide="isValidURL" id="submit" class="btn btn-block btn-lg submit-form">Start</button>
-                    <button type="submit" onclick="endSession();" ng-show="isValidURL" class="btn btn-block btn-lg submit-form invalid" ng-cloak><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;End Session</button>
                     <div class="form-check" ng-hide="isValidURL" ng-cloak>
                       <div class="checkbox">
                         <label>
@@ -58,56 +56,20 @@
             </form>
           </div>
           <div class="control-buttons">
-            <button type="button" class="btn btn-lg btn-info" onclick="settings();" ng-hide="isValidURL"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Settings</button> 
-            <button type="button" class="btn btn-lg btn-primary" onclick="saveFirst();" ng-hide="isValidURL"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Help</button>
+            <button type="button" class="btn btn-lg btn-info" onclick="settings();"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Settings</button> 
+            <a type="button" href="getstarted.html" class="btn btn-lg btn-primary" ><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Get Started</a>
           </div>
            <p class="footer">
+           {{ fontStyle.id }}
+           <!-- {{ numLines }} -- {{ captionWindowHeight }} -- {{ fontStyle.name }} -->
+           <div class="captionArea" id="testArea">
+             <span ng-repeat="i in testTextArray">a<br></span>
+           </div>
               <a href="about.html">About Afloat</a>
+
           </p>
   </div><!-- container -->
 </body>
-<!-- 
-        <div class="col-sm-8">
-          <h2>Welcome to Afloat!</h2>
-        <p>
-          If this is the first time using this, click here to create a config file:
-        </p> -->
-          
-     <!--  <div class="form-group row">
-        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font size</label>
-        <div class="input-group col-sm-4">
-          <input type="text" class="form-control" id="fontSize" name="fontSize" ng-model="fontSize" required>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font color</label>
-        <div class="input-group col-sm-4">
-          <input type="text" class="form-control" id="fontColor" name="fontColor" ng-model="fontColor" required>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Font style</label>
-        <div class="input-group col-sm-4">
-          <input type="text" class="form-control" id="fontStyle" name="fontStyle" ng-model="fontStyle" required>
-        </div>
-      </div> -->
-
-
-      <!-- <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-          </ul>
-      </div> -->
-
-
-
   <script>
     // You can also require other files to run in this process
     require('angular');

@@ -29,38 +29,43 @@
   <body ng-app="Float" ng-controller="FloatController">
     <div class="container">
       <h2 class="panel-title">settings</h2>
+      <div class="captionArea" id="testArea">
+             <span ng-repeat="i in testTextArray">a<br></span>
+           </div>
        <form class="form-inline">
         <div class="form-group">
           <div class="row smallfield">
-            <label for="inputPassword4">Font size {{fontSize}}</label>
-            <input type="text" id="fontSize" name="fontSize" ng-model="fontSize" required class="form-control">
+            <label for="inputPassword4">Font size</label>
+            <input type="text" id="fontSize" name="fontSize" ng-model="configData.fontSize" required class="form-control">
             </input>
           </div>
-          <ul>
-            <li ng-repeat="(key, value) in fonts">{{key}}, {{value.name}}</li> {{selectedFont.name}}
-          </ul>
           <div class="row smallfield">
-            <label for="inputPassword4">Font color</label>
-            <input type="text" id="fontColor" name="fontColor" ng-model="fontColor" required class="form-control"></input>
+            <label for="fontColor">Font color</label>
+            <input type="text" id="fontColor" name="fontColor" ng-model="configData.fontColor" ng-value="configData.fontColor" required class="form-control jscolor"></input>
           </div>
-          {{fonts}}
           <div class="row smallfield">
             <label for="fontStyle">Font style</label>
-            <select id="basic" class="selectpicker show-tick form-control" ng-options="f.name as f.name group by f.type for f in fonts" ng-model="selectedFont.name">
-              <optgroup label="default fonts">
-                <!-- <option style="display:none" value="">{{f.name}}</option> -->
-              </optgroup>
+            <!-- f.name as f.name group by f.type for f in fonts -->
+            <select id="basic" class="selectpicker show-tick form-control" ng-options="f as f.name group by f.type for f in configData.fonts track by f.name" ng-model="selectedFont">
             </select>
           </div>
           <div class="row smallfield">
+            <label for="lineHeight">Vertical Spacing (%)</label>
+             <input type="text" id="lineHeight" name="lineHeight" ng-model="configData.lineHeight" required class="form-control"></input>
+          </div>
+          <div class="row smallfield">
+            <label for="lineHeight">Number of lines</label>
+             <input type="text" id="numLines" name="numLines" ng-model="configData.numLines" required class="form-control"></input>
+          </div>
+          <div class="row smallfield">
             <label for="inputPassword4">Background color</label>
-            <input type="text" id="bgColor" name="bgColor" ng-model="bgColor" required class="form-control">
+            <input type="text" id="bgColor" name="bgColor" ng-model="configData.bgColor" value="{{configData.bgColor}}" required class="form-control jscolor">
             </input>
           </div>
           <div class="row">
             <div class="checkbox">
               <label>
-                <input type="checkbox" value="" ng-model="checked">
+                <input type="checkbox" value="" ng-model="configData.transparency">
                   <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Transparent caption window
               </label>
             </div>
@@ -68,29 +73,47 @@
           <div class="row">
             <div class="checkbox">
               <label>
-                <input type="checkbox" value="" ng-model="checked">
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Menu &amp; titlebar invisible
+                <input type="checkbox" value="" ng-model="configData.shadow">
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Backdrop shadow
               </label>
             </div>
           </div>
           <div class="row">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" ng-model="configData.allWorkspaces">
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-flash bolt"></i></span>Visible on all workspaces
+              </label>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="row">
             <label for="lastURL">Remembered URL</label>
             <div class="input-group">
-              <input type="text" class="form-control" onClick="this.setSelectionRange(0, this.value.length)" name="lastURL" id="lastURL" ng-model="lastURL"></input>
+              <input type="text" class="form-control" onClick="this.setSelectionRange(0, this.value.length)" placeholder="You have no remembered event URL." name="lastURL" id="lastURL" ng-model="configData.lastURL" disabled></input>
               <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button" onclick="clearTextInput('lastURL');">Clear</button>
               </span>
             </div>
         </div>
         <div class="row">
-            <label for="lastURL">Add fonts</label>
+            <label for="userFonts">Add fonts</label>
             <div class="input-group">
               <input type="text" class="form-control" name="userFonts" id="userFonts" ng-model="userFonts"></input>
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" onclick="clearTextInput('lastURL');">Clear</button>
+                <button class="btn btn-secondary" type="button" onclick="clearTextInput('userFonts');">Clear</button>
               </span>
             </div>
-            {{userFonts}}
+            <p>{{fontMessage}}</p>
+            <p ng-show="addedFonts.length > 0" ng-cloak>The following fonts were added successfully:</p>
+            <ul ng-cloak>
+              <li ng-repeat="a in addedFonts track by a" ng-cloak>{{a}}</li>
+            </ul>
+            <p ng-show="rejects.length > 0" ng-cloak>The following fonts could not be added because they are duplicates:</p>
+            <ul ng-cloak>
+              <li ng-repeat="r in rejects track by $index" ng-cloak>{{r}}</li>
+            </ul>
         </div>
     <p class="centered padded"><a href="#" onclick="setDefaults();">Revert to Default Values</a></p>
   </div>   
@@ -98,7 +121,7 @@
     <button type="submit" class="btn btn-lg btn-info" ng-click="batchSetConfig(batchConfig);" ng-hide="isValidURL"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Settings</button>
     <button type="button" class="btn btn-lg btn-danger" onclick="closeSettings();" ng-hide="isValidURL"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
   </div>
-  </form>    
+  </form>
   </div><!-- container -->
 </body> 
   <script>
@@ -110,11 +133,14 @@
   <script type="text/javascript" src="index.js"></script>
   <script>
     $('.selectpicker').selectpicker({
-      size: 10,
+      size: 15,
       liveSearch: false
   });
     $(document).ready(function () {
       $('.selectpicker').selectpicker('refresh');
     });
   </script>
+      <!-- Color Picker -->
+
+    <script src="./resources/js/jscolor.min.js"></script>
 </html>

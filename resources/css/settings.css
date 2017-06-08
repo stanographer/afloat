@@ -4,7 +4,7 @@ body {
 	margin-top: 0px;
     background-image: url('../img/panelbg.png');
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
 
 	/*Make everything draggable.*/
 	-webkit-app-region: drag;
@@ -22,6 +22,10 @@ p {
 }
 label {
     margin-bottom: 15px;
+}
+.captionArea {
+    position: absolute;
+    visibility: hidden;
 }
 .bolt {
     color: #2c363f !important;
@@ -128,7 +132,7 @@ input[type=text], input[type=password], input[type=email], input[type=tel], sele
 
 .smallfield input {
     float: right !important;
-    width:calc(100% - 170px);
+    width: calc(100% - 170px) !important;
 }
 .smallfield label {
     text-align: right !important;
@@ -137,8 +141,8 @@ input[type=text], input[type=password], input[type=email], input[type=tel], sele
     margin-right:15px !important;
 }
 .row {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
 }
 
 .btn-danger {
@@ -240,4 +244,10 @@ input[type=text], input[type=password], input[type=email], input[type=tel], sele
 }
 .form-inline .checkbox label, .form-inline .radio label {
     width: 100%;
+}
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    margin-bottom: 15px;
+}
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group>.btn, .input-group-btn:first-child>.dropdown-toggle, .input-group-btn:last-child>.btn-group:not(:last-child)>.btn, .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
+    margin-bottom: 15px;
 }

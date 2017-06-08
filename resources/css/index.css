@@ -9,6 +9,15 @@ body {
 	-webkit-user-select: none;
 	font-family: 'Source Sans Pro' !important;
 }
+#testArea {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: auto;
+    width: auto;
+    color: #000;
+    visibility: hidden;
+}
 button {
   -webkit-app-region: no-drag;
 }

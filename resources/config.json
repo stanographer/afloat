@@ -1,128 +1,73 @@
 {
-  "lastURL": "",
-  "fontSize": "40px",
-  "fontColor": "#fff",
+  "lastURL": "aloft.nu/stanley/tdf",
+  "fontSize": "36",
+  "fontColor": "FFF",
   "fontStyle": {
-    "name": "Sanchez",
-    "id": "Sanchez",
-    "type": "default"
+    "name": "Sintony",
+    "id": "Sintony",
+    "type": "user"
   },
-  "lineHeight": "140%",
-  "bgColor": "#2c363f",
+  "lineHeight": "129",
+  "bgColor": "000000",
   "opacity": "100%",
   "width": "800",
   "height": "50",
-  "transparency": false,
+  "numLines": "3",
+  "transparency": true,
+  "shadow": false,
+  "allWorkspaces": false,
   "frame": true,
   "userFonts": [],
   "fonts": [
     {
       "name": "Asap",
       "id": "Asap",
-      "type": "default",
-      "$$hashKey": "object:14"
+      "type": "default"
     },
     {
       "name": "Avenir Next",
       "id": "Avenir+Next",
-      "type": "default",
-      "$$hashKey": "object:15"
+      "type": "default"
     },
     {
       "name": "Inconsolata",
       "id": "Inconsolata",
-      "type": "default",
-      "$$hashKey": "object:16"
+      "type": "default"
     },
     {
       "name": "Lato",
       "id": "Lato",
-      "type": "default",
-      "$$hashKey": "object:17"
+      "type": "default"
     },
     {
       "name": "Open Sans",
       "id": "Open+Sans",
-      "type": "default",
-      "$$hashKey": "object:18"
+      "type": "default"
     },
     {
       "name": "Raleway",
       "id": "Raleway",
-      "type": "default",
-      "$$hashKey": "object:19"
+      "type": "default"
     },
     {
       "name": "Sanchez",
       "id": "Sanchez",
-      "type": "default",
-      "$$hashKey": "object:20"
+      "type": "default"
     },
     {
       "name": "Source Sans Pro",
       "id": "Source+Sans+Pro",
-      "type": "default",
-      "$$hashKey": "object:21"
+      "type": "default"
     },
     {
       "name": "Varela Round",
       "id": "Varela+Round",
-      "type": "default",
-      "$$hashKey": "object:22"
+      "type": "default"
     },
     {
-      "name": "Merriweather",
-      "id": "Merriweather",
-      "type": "user",
-      "$$hashKey": "object:32"
-    },
-    {
-      "name": "Oswald",
-      "id": "Oswald",
-      "type": "user",
-      "$$hashKey": "object:33"
-    },
-    {
-      "name": "Slabo 27px",
-      "id": "Slabo+27px",
-      "type": "user",
-      "$$hashKey": "object:34"
-    },
-    {
-      "name": "Nunito",
-      "id": "Nunito",
-      "type": "user",
-      "$$hashKey": "object:38"
-    },
-    {
-      "name": "Ubuntu",
-      "id": "Ubuntu",
-      "type": "user",
-      "$$hashKey": "object:39"
-    },
-    {
-      "name": "Padauk",
-      "id": "Padauk",
-      "type": "user",
-      "$$hashKey": "object:28"
-    },
-    {
-      "name": "Titillium Web",
-      "id": "Titillium+Web",
-      "type": "user",
-      "$$hashKey": "object:29"
-    },
-    {
-      "name": "Poppins",
-      "id": "Poppins",
-      "type": "user",
-      "$$hashKey": "object:30"
-    },
-    {
-      "name": "Quicksand",
-      "id": "Quicksand",
-      "type": "user",
-      "$$hashKey": "object:31"
+      "name": "Sintony",
+      "id": "Sintony",
+      "type": "user"
     }
   ]
 }

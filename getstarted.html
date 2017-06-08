@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Afloat</title>
+
+    <!-- jQuery -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <!-- Bootstrap -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="./resources/css/custom-forms.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="./resources/font-awesome/css/font-awesome.min.css">
+
+    <!-- Custom -->
+    <link href="./resources/css/getstarted.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round|Raleway|Sanchez|Source+Sans+Pro" rel="stylesheet">
+    <script src="./resources/js/bootstrap-select.min.js"></script>
+  </head>
+  <body ng-app="Float" ng-controller="FloatController">
+    <div class="container">
+      <h1 class="title centered">afloat</h1>
+      <div class="control-buttons centered">
+             <button type="button" class="btn btn-lg btn-success centered" onclick="history.go(-1);"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;&nbsp;Back</button> 
+          </div>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="aboutheading" data-toggle="collapse" data-parent="#accordion" href="#about" aria-expanded="true" aria-controls="about">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#about" aria-expanded="true" aria-controls="about">
+                    What is Afloat?
+                  </a>
+                </h4>
+              </div>
+              <div id="about" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="aboutheading">
+                <div class="panel-body">
+                  <p>
+                    Afloat is a tool that allows a user to superimpose Aloft captions over most desktop applications. This is particularly useful during live presentations or settings where there is visual content alongside spoken content that is not captioned as the consumer is no longer forced look back and forth between the presentation and a separate display that is showing the captions.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="quickstartheading" data-toggle="collapse" data-parent="#accordion" href="#quickstart" aria-expanded="false" aria-controls="quickstart">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#quickstart" aria-expanded="false" aria-controls="quickstart">
+                    Quickstart
+                  </a>
+                </h4>
+              </div>
+              <div id="quickstart" class="panel-collapse collapse" role="tabpanel" aria-labelledby="quickstartheading">
+                <div class="panel-body">
+                <p><small>REQUIREMENTS</small></p>
+                  <p>
+                    In order to use Afloat, you will need a Windows, Mac, or Linux computer, a copy of Afloat, and an Internet connection.
+                  </p>
+                <p><small>STEPS</small></p>
+                    <p>
+                      First, you will need an Aloft event ID given to you by your stenographer/captioner. This will be in the form <i> aloft.nu/CAPTIONER/EVENT</i>, where the name of your captioner and event name would appear in place of CAPTIONER and EVENT.
+                    </p>
+                    <p>
+                      Next, paste the full address into the form field below "Enter your Aloft event URL here:" and press Start or hit the return key.
+                    </p>
+                    <p class="centered"><img src="./resources/img/enteralofturl.png" alt="Enter your Aloft URL"></p>
+                    <p class="tip">
+                      <strong>TIP: Check "Remember Next Time" to have the event URL you just entered be remembered the next time you run Afloat.</strong>
+                    </p>
+                    <p>
+                      A window should pop up containing dummy text if the event is currently empty, or the live transcription being produced by your captioner.
+                    </p>
+                    <p>
+                      <p class="centered"><img src="./resources/img/testcaptions.png" alt="Test captions post-launch"></p>
+                    </p>               
+                    <p>
+                      Now just drag the caption window around to where you want the captions to be displayed. That's it!
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="settingsheading" data-toggle="collapse" data-parent="#accordion" href="#settings" aria-expanded="false" aria-controls="settings">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#settings" aria-expanded="false" aria-controls="settings">
+                    Settings
+                  </a>
+                </h4>
+              </div>
+              <div id="settings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="settingsheading">
+                <div class="panel-body">
+                  <p>
+                    Inside the settings panel, there are a number of options that you can control about the way Afloat looks and behaves.
+                  </p>
+                  <p>
+                    <h4>Font size</h4>
+                    Controls the size of the captioned text in point values.
+                  </p>
+                  <p>
+                    <h4>Font color</h4>
+                    Controls the color of the captioned text. To change it, click the field and a color palette will automatically pop up, letting you choose the color and it will automatically populate the field for you with the corresponding hex value.
+                  </p>
+                  <p>
+                    <h4>Font style</h4>
+                    Controls the font face of the captioned text.<br/>
+                    <a href="#addingfonts">Adding Fonts</a>
+                  </p>
+                  <p>
+                    <h4>Vertical spacing</h4>
+                    Controls the amount of vertical spacing between lines in the captioned text in percentage values.
+                  </p>
+                  <p>
+                    <h4>Number of lines</h4>
+                    Controls the number of lines of visible captioned text.
+                  </p>
+                  <p>
+                    <h4>Background color</h4>
+                    Controls the color of the bar that appears behind captioned text.
+                  </p>
+                  <p>
+                    <h4>Transparent caption window</h4>
+                    When turned on, only onscreen text will have a solid bar behind it similar to TV closed captions. When unchecked, the entire caption area will appear with a solid rectangle behind it.
+                  </p>
+                  <p>
+                    <h4>Backdrop shadow</h4>
+                    When checked, the caption window will appear with a drop shadow behind it.
+                  </p>
+                  <p>
+                    <h4>Visible on all workspaces</h4>
+                    When checked, the captions will appear on all virtual desktops so that even when switching to a different view or plugging into a projector, the presenter does not have to worry about dragging the captions over manually each time.
+                  </p>
+                  <p>
+                    <h4>Remembered URL</h4>
+                     This field shows the currently saved event URL. Pressing clear allows you to delete it.
+                  </p>
+                  <p>
+                    <h4>Add fonts</h4>
+                     Allows you to use any font available on Google Fonts as your captioning font. Read below for directions on how to add fonts.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="addfontheading" data-toggle="collapse" data-parent="#accordion" href="#addfont" aria-expanded="false" aria-controls="addfont">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#addfont" aria-expanded="false" aria-controls="addfont">
+                    Adding Fonts
+                  </a>
+                </h4>
+              </div>
+              <div id="addfont" class="panel-collapse collapse" role="tabpanel" aria-labelledby="addfontheading">
+                <div class="panel-body">
+                  <p>
+                    By following these steps, you can add any font on the Google Fonts repository to use as your captioning font.
+                  </p>
+                  <p>
+                    First, go to <a href="https://fonts.google.com/" target="_blank" alt="Google Fonts">fonts.google.com</a> to see a list of available fonts. When you see a font you like, click on the plus sign that appears at the top right-hand corner of the font.
+                  </p>
+                  <p class="centered"><img src="./resources/img/addfont1.png" alt="Google Font window"></p>
+                  <p>
+                    At the bottom of the screen it should say "1 Family Selected," meaning that you've added it to your collection. You can repeat this process until you've added all the fonts you would like to use with Afloat. You can always add more fonts later.
+                  </p>
+                  <p>
+                    Once you are done selecting fonts, click on the black bar that appears at the bottom that says "x Families Selected."
+                  </p>
+                  <p class="centered"><img src="./resources/img/addfont2.png" alt="Selected font families"></p>
+                  <p>
+                    Now take the embed code that it gives you and paste it into the box where it says "Add Fonts."
+                  </p>
+                  <p class="centered"><img src="./resources/img/addfont4.png" alt="Pasting in the URL"></p>
+                  <p>
+                    Now press Save Settings or hit the return key and your fonts should now be available for use via the font style menu.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+           <p class="footer">
+           {{ fontStyle.id }}
+           <!-- {{ numLines }} -- {{ captionWindowHeight }} -- {{ fontStyle.name }} -->
+           <div class="captionArea" id="testArea">
+             <span ng-repeat="i in testTextArray">a<br></span>
+           </div>
+
+          </p>
+  </div><!-- container -->
+</body>
+  <script>
+    // You can also require other files to run in this process
+    require('angular');
+    require('./renderer.js');
+  </script>
+  <script type="text/javascript" src="FloatController.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</html>
